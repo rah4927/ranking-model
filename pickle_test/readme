@@ -1,0 +1,20 @@
+# Make a project 
+# Create a bucket
+     	# BUCKET_NAME = 'insert_bucket_name'
+	# REGION = us-central1
+	# gsutil mb -l $REGION gs://$BUCKET_NAME
+# copy data to bucket 
+	#gsutil cp -r data gs://$BUCKET_NAME/data 
+	#TRAIN_DATA = gs://$BUCKET_NAME/data/train_data
+	#EVAL_DATA = gs://$BUCKET_NAME/data/eval_data
+# JOB_NAME = <insert job name> 
+# OUTPUT_PATH = gs://$BUKET_NAME/$JOB_NAME
+# gcloud ai-platform jobs submit training $JOB_NAME \ 
+	-- job-dir $OUTPUT_PATH 
+	-- module-name trainer.task\
+	-- package-path trainer/ \
+	-- region $REGION \
+	-- \
+	-- train-files $TRAIN_DATA \
+	-- eval-files $EVAL_DATA \
+	-- verbosity DEBUG 

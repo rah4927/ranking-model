@@ -1,0 +1,1 @@
+gcloud ml-engine jobs submit training RANKING_MODEL_4 --module-name=trainer.ranking_model  --package-path=./trainer --train-file=trainer.training_data --job-dir=gs://ranking-models --python-version 3.7.3 --region=us-central1 --config=trainer/cloudml-gpu.yaml
