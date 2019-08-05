@@ -6,17 +6,9 @@ Created on Tue Jul 30 20:35:16 2019
 @author: rah4927
 """
 
-import keras
-import numpy as np
-from keras.layers import Dense, Dropout, Embedding, Flatten, Input, Reshape, Concatenate, Activation
-from keras.layers.normalization import BatchNormalization
-from keras.models import Model
-from keras.optimizers import Adam, SGD
-from keras.utils import to_categorical
-from sklearn.model_selection import train_test_split
+
 import tensorflow as tf 
 import argparse 
-from tensorflow.python.lib.io import file_io
 import pickle 
 
 def main(job_dir, input_dir):
