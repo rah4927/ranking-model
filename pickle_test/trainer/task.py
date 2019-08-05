@@ -11,13 +11,13 @@ import tensorflow as tf
 import argparse 
 import pickle 
 
-def main(job_dir, input_dir):
+def main(job_dir, train_data):
     
     ##Setting up the path for saving logs
     logs_path = job_dir + 'logs/tensorboard'
     
     with tf.device('/device:GPU:0'):
-        with open(input_dir, 'rb') as f: 
+        with open(train_data, 'rb') as f: 
             data = pickle.load(f)
         
 
