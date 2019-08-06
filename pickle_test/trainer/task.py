@@ -12,7 +12,7 @@ import argparse
 import pickle 
 from tensorflow.python.lib.io import file_io
 
-def main(job_dir, train_data):
+def main(job_dir, train_data, write_data):
     
     ##Setting up the path for saving logs
     logs_path = job_dir + 'logs/tensorboard'
@@ -20,6 +20,10 @@ def main(job_dir, train_data):
     with tf.device('/device:GPU:0'):
         with file_io.FileIO(train_data,'rb') as f:
              data = pickle.load(f)
+        with file_io.FileIO(write_data,'wb+') as f:
+             pickle.dump(data, f, pickle.HIGHEST_PROTOCOL)
+             
+             
         
 
 
@@ -37,6 +41,12 @@ if __name__ == "__main__":
     parser.add_argument(
       '--train-data',
       help = 'training data',
+      required = True
+    )
+    
+     parser.add_argument(
+      '--write-data',
+      help = 'write data',
       required = True
     )
     
