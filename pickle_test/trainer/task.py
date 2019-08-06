@@ -10,6 +10,7 @@ Created on Tue Jul 30 20:35:16 2019
 import tensorflow as tf 
 import argparse 
 import pickle 
+from tensorflow.python.lib.io import 
 
 def main(job_dir, train_data):
     
@@ -17,8 +18,8 @@ def main(job_dir, train_data):
     logs_path = job_dir + 'logs/tensorboard'
     
     with tf.device('/device:GPU:0'):
-        with open(train_data, 'rb') as f: 
-            data = pickle.load(f)
+        with file_io.FileIO(train_data,'rb') as f:
+             data = pickle.load(f)
         
 
 
