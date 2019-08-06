@@ -10,7 +10,7 @@ Created on Tue Jul 30 20:35:16 2019
 import tensorflow as tf 
 import argparse 
 import pickle 
-from tensorflow.python.lib.io import 
+from tensorflow.python.lib.io import file_io
 
 def main(job_dir, train_data):
     
