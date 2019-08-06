@@ -44,7 +44,7 @@ if __name__ == "__main__":
       required = True
     )
     
-     parser.add_argument(
+    parser.add_argument(
       '--write-data',
       help = 'write data',
       required = True
