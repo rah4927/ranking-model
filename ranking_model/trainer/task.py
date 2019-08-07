@@ -84,7 +84,7 @@ def main(job_dir, query_embeddings, product_embeddings, X_train_data, X_test_dat
         M.fit(X_train, y_train, batch_size=1, epochs=10, validation_data=[X_test, y_test])
         
         # Save model.h5 on to google storage
-        Model.save('ranking-model.h5')
+        M.save('ranking-model.h5')
         with file_io.FileIO('ranking-model.h5', mode='r') as input_f:
             with file_io.FileIO(job_dir + 'model/ranking-model.h5', mode='w+') as output_f:
                 output_f.write(input_f.read())
