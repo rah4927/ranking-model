@@ -81,7 +81,7 @@ def main(job_dir, query_embeddings, product_embeddings, X_train_data, X_test_dat
                 
         M.compile(optimizer=Adam(clipnorm=0.5), loss='binary_crossentropy', metrics =['accuracy'])
         
-        M.fit(X_train, y_train, batch_size=1, epochs=10, validation_data=[X_test, y_test])
+        M.fit(X_train, y_train, batch_size=1000, epochs=1, validation_data=[X_test, y_test])
         
         # Save model.h5 on to google storage
         M.save('ranking-model.h5')
