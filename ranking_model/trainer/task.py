@@ -41,8 +41,8 @@ def model(query_embedding_matrix, product_embedding_matrix):
     d = Input((1,), name='D')
     
     x = Concatenate(name = 'concat-2')([q_em(q), d_em(d)])
-    x = Dense(1000, activation='relu', name = 'dense-N')(x)
-    x = Dense(1000, activation='relu', name = 'dense-N')(x)
+    x = Dense(1000, activation='relu', name = 'dense1-N')(x)
+    x = Dense(1000, activation='relu', name = 'dense2-N')(x)
     N = Model([q, d], Dense(1)(x), name = 'N')
     
     q = Input((1,), name = 'Q')
