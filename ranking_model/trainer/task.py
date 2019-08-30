@@ -41,7 +41,7 @@ def model(query_embedding_matrix, product_embedding_matrix):
     d = Input((1,), name='D')
     
     x = Concatenate(name = 'concat-2')([q_em(q), d_em(d)])
-    x = Dense(100, activation='relu', name = 'dense1-N')(x)
+    x = Dense(50, activation='relu', name = 'dense1-N')(x)
     N = Model([q, d], Dense(1)(x), name = 'N')
     
     q = Input((1,), name = 'Q')
@@ -91,8 +91,8 @@ def main(job_dir, query_embeddings, product_embeddings, X_train_data, X_test_dat
                 
         # Save N on to google storage
         N.save('rankN.h5')
-        with file_io.FileIO('rankN', mode='rb') as input_f:
-            with file_io.FileIO(job_dir + '/model/rankN', mode='wb+') as output_f:
+        with file_io.FileIO('rankN.h5', mode='rb') as input_f:
+            with file_io.FileIO(job_dir + '/model/rankN.h5', mode='wb+') as output_f:
                 output_f.write(input_f.read())
 
 
