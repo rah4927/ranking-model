@@ -17,11 +17,11 @@ import tensorflow as tf
 import argparse 
 from tensorflow.python.lib.io import file_io
 import pickle 
+import os 
 
 def load_obj(name):
     with file_io.FileIO(name,'rb') as f:
              return pickle.load(f)
-
 
 def model(query_embedding_matrix, product_embedding_matrix):
         
@@ -41,7 +41,7 @@ def model(query_embedding_matrix, product_embedding_matrix):
     d = Input((1,), name='D')
     
     x = Concatenate(name = 'concat-2')([q_em(q), d_em(d)])
-    x = Dense(1000, activation='relu', name = 'dense1-N')(x)
+    x = Dense(100, activation='relu', name = 'dense1-N')(x)
     N = Model([q, d], Dense(1)(x), name = 'N')
     
     q = Input((1,), name = 'Q')
@@ -85,8 +85,8 @@ def main(job_dir, query_embeddings, product_embeddings, X_train_data, X_test_dat
         
         # Save model.h5 on to google storage
         M.save('ranking-model.h5')
-        with file_io.FileIO('ranking-model.h5', mode='r') as input_f:
-            with file_io.FileIO(job_dir + 'model/ranking-model.h5', mode='w+') as output_f:
+        with file_io.FileIO('ranking-model.h5', mode='rb') as input_f:
+            with file_io.FileIO(job_dir + 'model/ranking-model.h5', mode='wb+') as output_f:
                 output_f.write(input_f.read())
 
 
