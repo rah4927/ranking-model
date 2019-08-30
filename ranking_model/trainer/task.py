@@ -53,7 +53,7 @@ def model(query_embedding_matrix, product_embedding_matrix):
     x = Activation('sigmoid', name = 'activation-M')(x)
     x = Flatten()(x)
     M = Model([q, d1, d2], x, name = 'M')
-    return M 
+    return M, N 
     
     
 
@@ -72,7 +72,7 @@ def main(job_dir, query_embeddings, product_embeddings, X_train_data, X_test_dat
         
         data = [query_embedding_matrix, product_embedding_matrix]
         
-        M = model(*data)
+        M, N = model(*data)
         
         X_train = load_obj(X_train_data)
         X_test = load_obj(X_test_data)
