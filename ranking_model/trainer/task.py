@@ -88,6 +88,12 @@ def main(job_dir, query_embeddings, product_embeddings, X_train_data, X_test_dat
         with file_io.FileIO('ranking-model.h5', mode='rb') as input_f:
             with file_io.FileIO(job_dir + 'model/ranking-model.h5', mode='wb+') as output_f:
                 output_f.write(input_f.read())
+                
+        # Save N on to google storage
+        N.save('rankN.h5')
+        with file_io.FileIO('rankN', mode='rb') as input_f:
+            with file_io.FileIO(job_dir + '/model/rankN', mode='wb+') as output_f:
+                output_f.write(input_f.read())
 
 
 ##Running the app
